@@ -1,0 +1,13 @@
+asgiref==3.9.2
+Django==5.2.6
+pillow==11.3.0
+sqlparse==0.5.3
+tzdata==2025.2
+pytest>=6.2.5
+pytest-django>=4.5.2
+coverage>=6.2
+factory-boy>=3.2.1
+gunicorn>=20.1.0
+dj-database-url>=0.5.0
+psycopg2-binary>=2.9.0
+whitenoise>=5.3.0

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerd Hub - Finalizar Compra</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="header__top-content">
+                    <h1 class="logo">
+                        <a href="/" aria-label="Nerd Hub - Página inicial">
+                            <i class="fas fa-gamepad"></i> NerDHub
+                        </a>
+                    </h1>
+                    
+                    <div class="header__search">
+                        <form class="search-form">
+                            <input 
+                                type="search" 
+                                class="search-input" 
+                                placeholder="O que você está procurando?" 
+                                aria-label="Buscar produtos"
+                            >
+                            <button type="submit" class="search-button" aria-label="Buscar">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="header__actions">
+                        <button class="header__action" aria-label="Carrinho de compras">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">3</span>
+                        </button>
+                        <button class="header__action" aria-label="Perfil do usuário">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header__bottom">
+            <div class="container">
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a href="/" class="main-nav__link">
+                                <i class="fas fa-home"></i> Principal
+                            </a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="/loja" class="main-nav__link">
+                                <i class="fas fa-store"></i> Loja
+                            </a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="/carrinho" class="main-nav__link">
+                                <i class="fas fa-shopping-cart"></i> Carrinho
+                            </a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="/suporte" class="main-nav__link">
+                                <i class="fas fa-headset"></i> Suporte
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Checkout Progress -->
+           
+
+            <div class="checkout-layout">
+                <!-- Left Column: Checkout Form -->
+                <div class="checkout-left">
+                    <!-- Endereço de Entrega -->
+                    <section class="checkout-section">
+                        <div class="checkout-section__header">
+                            <div class="checkout-section__icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h2 class="checkout-section__title">Endereço de Entrega</h2>
+                        </div>
+                        
+                        <div class="address-options">
+                            <div class="address-card selected">
+                                <div class="address-card__badge">Principal</div>
+                                <div class="address-card__header">
+                                    <h3 class="address-card__name">João Silva</h3>
+                                    <span class="address-card__type">Casa</span>
+                                </div>
+                                <div class="address-card__details">
+                                    Rua das Flores, 123<br>
+                                    Jardim das Oliveiras<br>
+                                    São Paulo - SP<br>
+                                    CEP: 01234-567
+                                </div>
+                                <p class="address-card__phone">
+                                    <i class="fas fa-phone"></i> (11) 99999-9999
+                                </p>
+                            </div>
+                            
+                            <div class="address-card">
+                                <div class="address-card__header">
+                                    <h3 class="address-card__name">Maria Santos</h3>
+                                    <span class="address-card__type">Trabalho</span>
+                                </div>
+                                <div class="address-card__details">
+                                    Av. Paulista, 1000<br>
+                                    Bela Vista<br>
+                                    São Paulo - SP<br>
+                                    CEP: 01310-100
+                                </div>
+                                <p class="address-card__phone">
+                                    <i class="fas fa-phone"></i> (11) 98888-8888
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="address-actions">
+                            <button class="btn btn--secondary">
+                                <i class="fas fa-plus"></i> Novo Endereço
+                            </button>
+                            <button class="btn btn--text">
+                                <i class="fas fa-edit"></i> Editar Endereços
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Forma de Pagamento -->
+                    <section class="checkout-section">
+                        <div class="checkout-section__header">
+                            <div class="checkout-section__icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h2 class="checkout-section__title">Forma de Pagamento</h2>
+                        </div>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-method selected" data-method="credit">
+                                <div class="payment-method__icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="payment-method__info">
+                                    <h3 class="payment-method__name">Cartão de Crédito</h3>
+                                    <p class="payment-method__description">Pague com seu cartão de crédito</p>
+                                </div>
+                                <span class="payment-method__discount">12x sem juros</span>
+                            </div>
+                            
+                            <div class="payment-method" data-method="pix">
+                                <div class="payment-method__icon">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <div class="payment-method__info">
+                                    <h3 class="payment-method__name">PIX</h3>
+                                    <p class="payment-method__description">Pagamento instantâneo</p>
+                                </div>
+                                <span class="payment-method__discount">5% OFF</span>
+                            </div>
+                            
+                            <div class="payment-method" data-method="boleto">
+                                <div class="payment-method__icon">
+                                    <i class="fas fa-barcode"></i>
+                                </div>
+                                <div class="payment-method__info">
+                                    <h3 class="payment-method__name">Boleto Bancário</h3>
+                                    <p class="payment-method__description">Pagamento em até 3 dias úteis</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Cartão de Crédito Details -->
+                        <div class="card-details active">
+                            <form id="credit-card-form">
+                                <div class="form-group">
+                                    <label for="card-number" class="form-label">Número do Cartão</label>
+                                    <input 
+                                        type="text" 
+                                        id="card-number" 
+                                        class="form-input"
+                                        placeholder="0000 0000 0000 0000"
+                                        maxlength="19"
+                                    >
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-name" class="form-label">Nome no Cartão</label>
+                                    <input 
+                                        type="text" 
+                                        id="card-name" 
+                                        class="form-input"
+                                        placeholder="JOÃO S SILVA"
+                                    >
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-expiry" class="form-label">Validade</label>
+                                        <input 
+                                            type="text" 
+                                            id="card-expiry" 
+                                            class="form-input"
+                                            placeholder="MM/AA"
+                                            maxlength="5"
+                                        >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="card-cvv" class="form-label">CVV</label>
+                                        <input 
+                                            type="text" 
+                                            id="card-cvv" 
+                                            class="form-input"
+                                            placeholder="123"
+                                            maxlength="3"
+                                        >
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-installments" class="form-label">Parcelas</label>
+                                    <select id="card-installments" class="form-input">
+                                        <option value="1">1x R$ 299,90</option>
+                                        <option value="2">2x R$ 149,95</option>
+                                        <option value="3">3x R$ 99,97</option>
+                                        <option value="4">4x R$ 74,98</option>
+                                        <option value="5">5x R$ 59,98</option>
+                                        <option value="6" selected>6x R$ 49,98</option>
+                                        <option value="12">12x R$ 24,99</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <aside class="order-summary">
+                    <div class="summary-card">
+                        <h2 class="summary-card__title">Resumo do Pedido</h2>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <div class="order-item__image">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="order-item__info">
+                                    <h3 class="order-item__name">Controle PlayStation 5</h3>
+                                    <p class="order-item__details">Cor: Branco • Quantidade: 1</p>
+                                </div>
+                                <div class="order-item__price">R$ 399,90</div>
+                            </div>
+                            
+                            <div class="order-item">
+                                <div class="order-item__image">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <div class="order-item__info">
+                                    <h3 class="order-item__name">Headset Gamer Pro</h3>
+                                    <p class="order-item__details">RGB • Wireless • Quantidade: 1</p>
+                                </div>
+                                <div class="order-item__price">R$ 299,90</div>
+                            </div>
+                            
+                            <div class="order-item">
+                                <div class="order-item__image">
+                                    <i class="fas fa-tshirt"></i>
+                                </div>
+                                <div class="order-item__info">
+                                    <h3 class="order-item__name">Camiseta Nerd Hub</h3>
+                                    <p class="order-item__details">Tamanho: M • Cor: Preta • Quantidade: 1</p>
+                                </div>
+                                <div class="order-item__price">R$ 59,90</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span>R$ 759,70</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Frete</span>
+                                <span class="text-success">Grátis</span>
+                            </div>
+                            <div class="summary-row discount">
+                                <span>Desconto (PIX)</span>
+                                <span>- R$ 37,99</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span>R$ 721,71</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-note">
+                            <h3 class="summary-note__title">
+                                <i class="fas fa-shipping-fast"></i> Entrega em 3-5 dias úteis
+                            </h3>
+                            <p class="summary-note__text">
+                                Seu pedido será enviado para o endereço selecionado. Você receberá atualizações por e-mail.
+                            </p>
+                        </div>
+                        
+                        <button class="complete-order-btn">
+                            <i class="fas fa-lock"></i> Finalizar Compra
+                        </button>
+                        
+                        <div class="secure-payment">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Pagamento 100% seguro e criptografado</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <!-- Brand Column -->
+                <div class="footer__column">
+                    <h3 class="footer__title">
+                        <i class="fas fa-gamepad"></i> Nerd Hub
+                    </h3>
+                    <p class="footer__description">
+                        Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Links Rápidos</h3>
+                    <ul class="footer__list">
+                        <li class="footer__list-item">
+                            <a href="/" class="footer__link">Principal</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/loja" class="footer__link">Loja</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/carrinho" class="footer__link">Carrinho</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/suporte" class="footer__link">Suporte</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Categorias</h3>
+                    <ul class="footer__list">
+                        <li class="footer__list-item">
+                            <a href="/colecionaveis" class="footer__link">Colecionáveis</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/games" class="footer__link">Games</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/acessorios" class="footer__link">Acessórios</a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/vestuario" class="footer__link">Vestuário</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    © 2024 Nerd Hub. Todos os direitos reservados.
+                </p>
+                <div class="footer__links">
+                    <a href="/privacidade">Política de Privacidade</a>
+                    <a href="/termos">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Payment Method Selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove selected class from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked method
+                this.classList.add('selected');
+                
+                // Show/hide credit card form
+                const methodType = this.dataset.method;
+                const cardDetails = document.querySelector('.card-details');
+                
+                if (methodType === 'credit') {
+                    cardDetails.classList.add('active');
+                } else {
+                    cardDetails.classList.remove('active');
+                }
+                
+                // Update discount in order summary
+                const discountRow = document.querySelector('.summary-row.discount span:last-child');
+                if (methodType === 'pix') {
+                    discountRow.textContent = '- R$ 37,99';
+                } else {
+                    discountRow.textContent = '- R$ 0,00';
+                }
+            });
+        });
+
+        // Address Selection
+        document.querySelectorAll('.address-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                document.querySelectorAll('.address-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+            });
+        });
+
+        // Credit Card Input Formatting
+        const cardNumber = document.getElementById('card-number');
+        const cardExpiry = document.getElementById('card-expiry');
+        
+        cardNumber.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = value.substring(0, 19);
+        });
+        
+        cardExpiry.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value.substring(0, 5);
+        });
+
+        // Complete Order Button
+        document.querySelector('.complete-order-btn').addEventListener('click', function() {
+            const selectedAddress = document.querySelector('.address-card.selected .address-card__name').textContent;
+            const selectedMethod = document.querySelector('.payment-method.selected .payment-method__name').textContent;
+            
+            alert(`Pedido confirmado!\n\nEndereço: ${selectedAddress}\nPagamento: ${selectedMethod}\n\nObrigado por comprar na NerdHub!`);
+            
+            // In a real application, you would submit the form here
+            // and redirect to a confirmation page
+        });
+
+        // New Address Button
+        document.querySelector('.btn--secondary').addEventListener('click', function() {
+            alert('Funcionalidade de novo endereço será implementada aqui.');
+        });
+
+        // Edit Addresses Button
+        document.querySelector('.btn--text').addEventListener('click', function() {
+            alert('Redirecionando para gestão de endereços...');
+        });
+    </script>
+</body>
+</html>

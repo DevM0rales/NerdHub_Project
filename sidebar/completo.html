@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar - NerdHub</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET COMPLETO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   VARIÁVEIS CSS DO SIDEBAR
+   ========================================================================== */
+:root {
+    /* Cores Principais */
+    --primary: #55a143;
+    --primary-dark: #327d21;
+    --primary-gradient: linear-gradient(135deg, #55a143 0%, #327d21 100%);
+    
+    --accent: #0e411b;
+    --accent-light: #17fa2a;
+    
+    /* Cores Neutras */
+    --white: #ffffff;
+    
+    /* Espaçamentos */
+    --space-xs: 0.5rem;    /* 8px */
+    --space-sm: 1rem;      /* 16px */
+    --space-md: 1.5rem;    /* 24px */
+    --space-lg: 2rem;      /* 32px */
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transições */
+    --transition-normal: 250ms ease;
+    --transition-fast: 150ms ease;
+    
+    /* Tipografia */
+    --font-base: 1rem;     /* 16px */
+    --font-lg: 1.125rem;   /* 18px */
+    --font-xl: 1.25rem;    /* 20px */
+    --font-2xl: 1.5rem;    /* 24px */
+}
+
+/* ==========================================================================
+   ESTILOS BASE
+   ========================================================================== */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+.sidebar {
+    background: var(--primary-gradient);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: var(--space-lg);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
+    width: 280px;
+    animation: slideInLeft 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sidebar__title {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.sidebar__title i {
+    color: var(--accent-light);
+    font-size: var(--font-lg);
+}
+
+.sidebar__nav {
+    width: 100%;
+}
+
+.sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.sidebar__item {
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.sidebar__item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar__item--active {
+    background-color: rgba(23, 250, 42, 0.25);
+    border-left: 5px solid var(--accent-light);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.02);
+}
+
+.sidebar__item--active .sidebar__link {
+    padding-left: 15px;
+    font-weight: 700;
+}
+
+/* REMOVIDO: .sidebar__item--active::before (animação de shimmer) */
+
+.sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    color: var(--white);
+    font-size: var(--font-base);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar__link i {
+    width: 24px;
+    text-align: center;
+    font-size: var(--font-lg);
+    transition: all var(--transition-normal);
+    color: var(--accent-light);
+}
+
+.sidebar__item:hover .sidebar__link i {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+.sidebar__item--active .sidebar__link i {
+    color: #ffffff;
+    /* REMOVIDO: animation: pulse 2s infinite; */
+    transform: scale(1.1);
+}
+
+.sidebar__item--support {
+    margin-top: var(--space-lg);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    padding-top: var(--space-md);
+    background: rgba(23, 250, 42, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(23, 250, 42, 0.3);
+}
+
+.sidebar__item--support .sidebar__link {
+    color: #ffffff;
+    font-weight: 700;
+    justify-content: center;
+    background: rgba(23, 250, 42, 0.2);
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-md);
+}
+
+.sidebar__item--support .sidebar__link:hover {
+    background: rgba(23, 250, 42, 0.3);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(23, 250, 42, 0.3);
+}
+
+.sidebar__item--support .sidebar__link i {
+    color: #ffffff;
+    font-size: var(--font-xl);
+}
+
+.sidebar__item--support:hover .sidebar__link i {
+    /* REMOVIDO: animation: bounce 0.5s; */
+    transform: translateY(-3px);
+}
+
+/* REMOVIDO: Efeito de brilho no hover dos itens (.sidebar__item:hover::after) */
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .sidebar__item:hover {
+        transform: translateX(8px);
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --font-xl: 1.125rem;
+        --font-lg: 1rem;
+    }
+    
+    .sidebar {
+        padding: var(--space-md);
+        width: 95%;
+    }
+    
+    .sidebar__title {
+        font-size: var(--font-lg);
+    }
+    
+    .sidebar__link {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+    }
+    
+    .sidebar__link i {
+        font-size: var(--font-base);
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="sidebar__title">
+            <i class="fas fa-cog"></i> Configurações
+        </h2>
+        
+        <nav class="sidebar__nav" aria-label="Navegação de configurações">
+            <ul class="sidebar__list">
+                <li class="sidebar__item">
+                    <a href="/perfil" class="sidebar__link">
+                        <i class="sidebar__icon fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar__item sidebar__item--active">
+                    <a href="/seguranca" class="sidebar__link">
+                        <i class="sidebar__icon fas fa-shield-alt"></i>
+                        <span>Segurança</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar__item">
+                    <a href="/endereco" class="sidebar__link">
+                        <i class="sidebar__icon fas fa-map-marker-alt"></i>
+                        <span>Endereço</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar__item">
+                    <a href="/conta" class="sidebar__link">
+                        <i class="sidebar__icon fas fa-user-circle"></i>
+                        <span>Conta</span>
+                    </a>
+                </li>
+
+                <li class="sidebar__item">
+                    <a href="/pedidos" class="sidebar__link">
+                        <i class="sidebar__icon fas fa-shopping-bag"></i>
+                        <span>Pedidos</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar__item sidebar__item--support">
+                    <a href="/suporte" class="sidebar__link">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat Suporte</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <script>
+        // Script básico para funcionalidades do sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar interatividade aos links do sidebar
+            const sidebarLinks = document.querySelectorAll('.sidebar__link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const text = this.querySelector('span').textContent.trim();
+                    
+                    // Remover classe ativa de todos os itens
+                    document.querySelectorAll('.sidebar__item').forEach(item => {
+                        item.classList.remove('sidebar__item--active');
+                    });
+                    
+                    // Adicionar classe ativa ao item clicado
+                    this.closest('.sidebar__item').classList.add('sidebar__item--active');
+                    
+                    // Feedback visual
+                    console.log('Item selecionado:', text);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
