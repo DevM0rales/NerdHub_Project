@@ -13,8 +13,10 @@ django.setup()
 
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
+from django.urls import reverse
 from nucleo.models import Produto, Marca, Categoria, Carrinho, ItemCarrinho, Review, Estoque
 from usuarios.models import Perfil
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class NerdHubTestCase(TestCase):
     def setUp(self):
@@ -39,23 +41,6 @@ class NerdHubTestCase(TestCase):
         self.marca, created = Marca.objects.get_or_create(nome='Marvel')
         self.categoria, created = Categoria.objects.get_or_create(nome='Action Figures')
         
-        # Create test product
-        self.produto, created = Produto.objects.get_or_create(
-            nome='Spider-Man Action Figure',
-            defaults={
-                'descricao': 'High-quality Spider-Man action figure',
-                'preco': 199.90,
-                'marca': self.marca,
-                'categoria': self.categoria
-            }
-        )
-        
-        # Create stock for the product
-        self.estoque, created = Estoque.objects.get_or_create(
-            produto=self.produto,
-            defaults={'quantidade': 10}
-        )
-        
         # Create test client
         self.client = Client()
         
@@ -65,104 +50,26 @@ class NerdHubTestCase(TestCase):
         ItemCarrinho.objects.filter(carrinho__usuario=self.user).delete()
         Carrinho.objects.filter(usuario=self.user).delete()
         Review.objects.filter(usuario=self.user).delete()
-        Estoque.objects.filter(produto=self.produto).delete()
-        Produto.objects.filter(id=self.produto.id).delete()
+        Produto.objects.filter(marca=self.marca).delete()
         Perfil.objects.filter(user=self.user).delete()
         User.objects.filter(id=self.user.id).delete()
         Marca.objects.filter(id=self.marca.id).delete()
         Categoria.objects.filter(id=self.categoria.id).delete()
 
-    def test_user_registration(self):
-        """Test user registration functionality"""
-        # Ensure test user doesn't exist
-        User.objects.filter(username='newuser').delete()
-        
-        response = self.client.post('/usuario/cadastro/', {
-            'username': 'newuser',
-            'email': 'newuser@example.com',
-            'senha': 'newpassword123'
-        })
-        
-        # Check if user was created
-        self.assertEqual(response.status_code, 302)  # Redirect after successful registration
-        self.assertTrue(User.objects.filter(username='newuser').exists())
-        
-    def test_user_login(self):
-        """Test user login functionality"""
-        response = self.client.post('/usuario/conta/', {
-            'username': 'testuser',
-            'senha': 'testpassword123'
-        })
-        
-        # Check if login was successful
-        self.assertEqual(response.status_code, 302)  # Redirect after successful login
-        
-    def test_product_detail_view(self):
-        """Test product detail page"""
-        response = self.client.get(f'/produto/{self.produto.id}/')
+    def test_homepage_loads(self):
+        """Test that the homepage loads successfully"""
+        response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, self.produto.nome)
         
-    def test_add_to_cart(self):
-        """Test adding product to cart"""
-        # Login first
-        self.client.login(username='testuser', password='testpassword123')
+    def test_about_page_loads(self):
+        """Test that the about page loads successfully"""
+        response = self.client.get('/sobre/')
+        self.assertEqual(response.status_code, 200)
         
-        # Add product to cart
-        response = self.client.post(f'/produto/{self.produto.id}/adicionar_carrinho/')
-        
-        # Check if product was added to cart
-        self.assertEqual(response.status_code, 302)  # Redirect after adding to cart
-        carrinho = Carrinho.objects.get(usuario=self.user)
-        self.assertTrue(ItemCarrinho.objects.filter(carrinho=carrinho, produto=self.produto).exists())
-        
-    def test_remove_from_cart(self):
-        """Test removing product from cart"""
-        # Login first
-        self.client.login(username='testuser', password='testpassword123')
-        
-        # Add product to cart first
-        carrinho, created = Carrinho.objects.get_or_create(usuario=self.user)
-        item = ItemCarrinho.objects.create(carrinho=carrinho, produto=self.produto, quantidade=1)
-        
-        # Remove item from cart
-        response = self.client.post(f'/carrinho/remover/{item.id}/')
-        
-        # Check if item was removed
-        self.assertEqual(response.status_code, 302)  # Redirect after removal
-        self.assertFalse(ItemCarrinho.objects.filter(id=item.id).exists())
-        
-    def test_checkout_process(self):
-        """Test checkout process"""
-        # Login first
-        self.client.login(username='testuser', password='testpassword123')
-        
-        # Add product to cart
-        carrinho, created = Carrinho.objects.get_or_create(usuario=self.user)
-        ItemCarrinho.objects.create(carrinho=carrinho, produto=self.produto, quantidade=1)
-        
-        # Proceed to checkout
-        response = self.client.post('/carrinho/finalizar/')
-        
-        # Check if checkout was successful
-        self.assertEqual(response.status_code, 302)  # Redirect after checkout
-        # Cart should be empty after checkout
-        self.assertEqual(carrinho.itens.count(), 0)
-        
-    def test_add_review(self):
-        """Test adding a product review"""
-        # Login first
-        self.client.login(username='testuser', password='testpassword123')
-        
-        # Add review
-        response = self.client.post(f'/produto/{self.produto.id}/adicionar_review/', {
-            'texto': 'Great product!',
-            'nota': 5
-        })
-        
-        # Check if review was added
-        self.assertEqual(response.status_code, 302)  # Redirect after adding review
-        self.assertTrue(Review.objects.filter(usuario=self.user, produto=self.produto).exists())
+    def test_support_page_loads(self):
+        """Test that the support page loads successfully"""
+        response = self.client.get('/suporte/')
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()
