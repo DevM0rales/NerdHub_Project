@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,7 +88,6 @@ DATABASES = {
 
 # For Railway deployment, we'll use PostgreSQL in production
 if 'DATABASE_URL' in os.environ:
-    import dj_database_url
     DATABASES['default'] = dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
@@ -132,6 +132,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'nucleo/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# For Railway deployment
+if 'RAILWAY_STATIC_URL' in os.environ:
+    STATIC_URL = f"{os.environ.get('RAILWAY_STATIC_URL')}/"
 
 # Media files (Uploaded files)
 MEDIA_URL = '/media/'
